@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        
+        sort(nums.begin(),nums.end());
+
+        unordered_map<int, vector<int>> freq;
+        int temp;
+        for(int i = 0 ; i<nums.size();i++ ){
+            temp = nums[i];
+            freq[nums[i]].push_back(temp);
+
+        }
+
+        map <int , int >lentu;
+        int temp2;
+        for(auto itr = freq.begin(); itr!= freq.end(); itr++ ){
+            // temp2 = freq->first;
+            lentu[itr->second.size()]= itr->first;
+        }
+        vector <int>res;
+        int count=k;
+        for (auto itr = lentu.rbegin(); itr != lentu.rend() && count > 0; ++itr) {
+        res.push_back(itr->second);
+        count--;
+        }
+        // for(auto itr = lentu.end(); itr!=lentu.begin(); itr--){
+        //     if(count==0){
+        //         break;
+        //     }
+
+        //     else{
+
+        //     res.push_back(itr->second);    
+
+        //     count--;
+        //     }
+
+            
+        // }
+        
+        return res;
+
+    }
+};
